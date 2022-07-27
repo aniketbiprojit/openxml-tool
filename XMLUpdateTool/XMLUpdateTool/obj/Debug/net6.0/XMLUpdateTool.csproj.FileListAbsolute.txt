@@ -1,0 +1,36 @@
+/Users/peppercontent/Work/openxml-tool /XMLUpdateTool/XMLUpdateTool/bin/Debug/net6.0/XMLUpdateTool
+/Users/peppercontent/Work/openxml-tool /XMLUpdateTool/XMLUpdateTool/bin/Debug/net6.0/XMLUpdateTool.deps.json
+/Users/peppercontent/Work/openxml-tool /XMLUpdateTool/XMLUpdateTool/bin/Debug/net6.0/XMLUpdateTool.runtimeconfig.json
+/Users/peppercontent/Work/openxml-tool /XMLUpdateTool/XMLUpdateTool/bin/Debug/net6.0/XMLUpdateTool.dll
+/Users/peppercontent/Work/openxml-tool /XMLUpdateTool/XMLUpdateTool/bin/Debug/net6.0/XMLUpdateTool.pdb
+/Users/peppercontent/Work/openxml-tool /XMLUpdateTool/XMLUpdateTool/bin/Debug/net6.0/DocumentFormat.OpenXml.dll
+/Users/peppercontent/Work/openxml-tool /XMLUpdateTool/XMLUpdateTool/bin/Debug/net6.0/System.IO.Packaging.dll
+/Users/peppercontent/Work/openxml-tool /XMLUpdateTool/XMLUpdateTool/obj/Debug/net6.0/XMLUpdateTool.csproj.AssemblyReference.cache
+/Users/peppercontent/Work/openxml-tool /XMLUpdateTool/XMLUpdateTool/obj/Debug/net6.0/XMLUpdateTool.GeneratedMSBuildEditorConfig.editorconfig
+/Users/peppercontent/Work/openxml-tool /XMLUpdateTool/XMLUpdateTool/obj/Debug/net6.0/XMLUpdateTool.AssemblyInfoInputs.cache
+/Users/peppercontent/Work/openxml-tool /XMLUpdateTool/XMLUpdateTool/obj/Debug/net6.0/XMLUpdateTool.AssemblyInfo.cs
+/Users/peppercontent/Work/openxml-tool /XMLUpdateTool/XMLUpdateTool/obj/Debug/net6.0/XMLUpdateTool.csproj.CoreCompileInputs.cache
+/Users/peppercontent/Work/openxml-tool /XMLUpdateTool/XMLUpdateTool/obj/Debug/net6.0/XMLUpdateTool.csproj.CopyComplete
+/Users/peppercontent/Work/openxml-tool /XMLUpdateTool/XMLUpdateTool/obj/Debug/net6.0/XMLUpdateTool.dll
+/Users/peppercontent/Work/openxml-tool /XMLUpdateTool/XMLUpdateTool/obj/Debug/net6.0/refint/XMLUpdateTool.dll
+/Users/peppercontent/Work/openxml-tool /XMLUpdateTool/XMLUpdateTool/obj/Debug/net6.0/XMLUpdateTool.pdb
+/Users/peppercontent/Work/openxml-tool /XMLUpdateTool/XMLUpdateTool/obj/Debug/net6.0/XMLUpdateTool.genruntimeconfig.cache
+/Users/peppercontent/Work/openxml-tool /XMLUpdateTool/XMLUpdateTool/obj/Debug/net6.0/ref/XMLUpdateTool.dll
+/Users/peppercontent/Work/openxml-tool/XMLUpdateTool/XMLUpdateTool/bin/Debug/net6.0/XMLUpdateTool
+/Users/peppercontent/Work/openxml-tool/XMLUpdateTool/XMLUpdateTool/bin/Debug/net6.0/XMLUpdateTool.deps.json
+/Users/peppercontent/Work/openxml-tool/XMLUpdateTool/XMLUpdateTool/bin/Debug/net6.0/XMLUpdateTool.runtimeconfig.json
+/Users/peppercontent/Work/openxml-tool/XMLUpdateTool/XMLUpdateTool/bin/Debug/net6.0/XMLUpdateTool.dll
+/Users/peppercontent/Work/openxml-tool/XMLUpdateTool/XMLUpdateTool/bin/Debug/net6.0/XMLUpdateTool.pdb
+/Users/peppercontent/Work/openxml-tool/XMLUpdateTool/XMLUpdateTool/bin/Debug/net6.0/DocumentFormat.OpenXml.dll
+/Users/peppercontent/Work/openxml-tool/XMLUpdateTool/XMLUpdateTool/bin/Debug/net6.0/System.IO.Packaging.dll
+/Users/peppercontent/Work/openxml-tool/XMLUpdateTool/XMLUpdateTool/obj/Debug/net6.0/XMLUpdateTool.csproj.AssemblyReference.cache
+/Users/peppercontent/Work/openxml-tool/XMLUpdateTool/XMLUpdateTool/obj/Debug/net6.0/XMLUpdateTool.GeneratedMSBuildEditorConfig.editorconfig
+/Users/peppercontent/Work/openxml-tool/XMLUpdateTool/XMLUpdateTool/obj/Debug/net6.0/XMLUpdateTool.AssemblyInfoInputs.cache
+/Users/peppercontent/Work/openxml-tool/XMLUpdateTool/XMLUpdateTool/obj/Debug/net6.0/XMLUpdateTool.AssemblyInfo.cs
+/Users/peppercontent/Work/openxml-tool/XMLUpdateTool/XMLUpdateTool/obj/Debug/net6.0/XMLUpdateTool.csproj.CoreCompileInputs.cache
+/Users/peppercontent/Work/openxml-tool/XMLUpdateTool/XMLUpdateTool/obj/Debug/net6.0/XMLUpdateTool.csproj.CopyComplete
+/Users/peppercontent/Work/openxml-tool/XMLUpdateTool/XMLUpdateTool/obj/Debug/net6.0/XMLUpdateTool.dll
+/Users/peppercontent/Work/openxml-tool/XMLUpdateTool/XMLUpdateTool/obj/Debug/net6.0/refint/XMLUpdateTool.dll
+/Users/peppercontent/Work/openxml-tool/XMLUpdateTool/XMLUpdateTool/obj/Debug/net6.0/XMLUpdateTool.pdb
+/Users/peppercontent/Work/openxml-tool/XMLUpdateTool/XMLUpdateTool/obj/Debug/net6.0/XMLUpdateTool.genruntimeconfig.cache
+/Users/peppercontent/Work/openxml-tool/XMLUpdateTool/XMLUpdateTool/obj/Debug/net6.0/ref/XMLUpdateTool.dll
