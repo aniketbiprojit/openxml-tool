@@ -22,26 +22,35 @@ Console.WriteLine(textToSearch);
 Run? forX = null;
 Run? forY = null;
 
+int lengthBefore = 0;
 
 using (WordprocessingDocument document =
        WordprocessingDocument.Open(filepath, true))
 {
     if (document.MainDocumentPart != null) {
         MainDocumentPart mainDocumentPart = document.MainDocumentPart;
-        Console.WriteLine("File read.");
-        Console.WriteLine(mainDocumentPart.Document.Descendants().Count());
+        
         foreach(Run data in mainDocumentPart.Document.Descendants<Run>())
         {
-            Console.WriteLine(data.InnerText);
             textFromDoc += data.InnerText;
             if (textFromDoc.Length - 1 >= x && forX==null) {
+
                 forX = data;
-                Console.WriteLine("x = " + x + " " + textFromDoc[x]);
+                Console.WriteLine(lengthBefore + ", x = " + x + " " + textFromDoc[x]);
             }
+
+
+
             if (textFromDoc.Length - 1 >= y && forY == null)
             {
                 forY = data;
-                Console.WriteLine("y = " + y + " " + textFromDoc[y]);
+                Console.WriteLine(lengthBefore + ", y = " + y + " " + data.InnerText[..(y-lengthBefore)]);
+            }
+
+            if (forY==null)
+            {
+                lengthBefore += data.InnerText.Length;
+                Console.WriteLine(lengthBefore);
             }
         }
 
@@ -89,6 +98,7 @@ using (WordprocessingDocument document =
                 forX.InsertBeforeSelf(new CommentRangeStart(){ Id = initialCommentId });
 
                 // add a commentRangeEnd after forY
+                Console.WriteLine("forY: " + forY.InnerText);
                 var cmtEnd = forY.InsertAfterSelf(new CommentRangeEnd() { Id = initialCommentId });
 
 
