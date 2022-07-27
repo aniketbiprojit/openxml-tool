@@ -106,13 +106,18 @@ using (WordprocessingDocument document =
                 if (forX == forY)
                 {
                     Console.WriteLine("Equal");
+                    // split forX or forY into three elements.
+                    // [..lengthBeforeX], [lengthBeforeX..lengthBeforeY], [lengthBeforeY..]
+                    Console.WriteLine("Finished = Equals");
                 }
                 else
                 {
+                    // split forX into before([0..lengthBeforeX], [lengthBeforeX..X]) and forX
                     forX.InsertBeforeSelf(new CommentRangeStart() { Id = initialCommentId });
 
                     // add a commentRangeEnd after forY
                     Console.WriteLine("forY: " + forY.InnerText);
+
                     // split forY into two runs
                     string text1 = forY.InnerText[..(y - lengthBeforeY)];
                     string text2 = forY.InnerText[(y - lengthBeforeY)..];
