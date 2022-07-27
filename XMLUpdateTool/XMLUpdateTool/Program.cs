@@ -5,12 +5,13 @@ using System.Text.RegularExpressions;
 
 string baseDir = "/Users/peppercontent/Work/openxml-tool/data/";
 
-string filepath = baseDir + "test-doc-no-comment.docx";
+string filepath = baseDir + "document.docx";
 
-int x = 7;
-int y = 59;
+int x = 365;
+int y = 514;
 
-string textToSearch = "overview of portal_backend repository code.\nGet clari";
+
+string textToSearch = "ssentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with des";
 textToSearch = Regex.Replace(textToSearch, @"\t|\n|\r", "");
 
 
@@ -23,7 +24,8 @@ Console.WriteLine(textToSearch);
 Run? forX = null;
 Run? forY = null;
 
-int lengthBefore = 0;
+int lengthBeforeY = 0;
+int lengthBeforeX = 0;
 
 using (WordprocessingDocument document =
        WordprocessingDocument.Open(filepath, true))
@@ -35,9 +37,8 @@ using (WordprocessingDocument document =
         {
             textFromDoc += data.InnerText;
             if (textFromDoc.Length - 1 >= x && forX==null) {
-
-                forX = data;
-                Console.WriteLine(lengthBefore + ", x = " + x + " " + textFromDoc[x]);
+               forX = data;
+                Console.WriteLine(lengthBeforeY + ", x = " + x + " " + textFromDoc[x]);
             }
 
 
@@ -45,13 +46,17 @@ using (WordprocessingDocument document =
             if (textFromDoc.Length - 1 >= y && forY == null)
             {
                 forY = data;
-                Console.WriteLine(lengthBefore + ", y = " + y + " " + data.InnerText[..(y-lengthBefore)]);
+                Console.WriteLine(lengthBeforeY + ", y = " + y + " " + data.InnerText[..(y-lengthBeforeY)]);
             }
 
             if (forY==null)
             {
-                lengthBefore += data.InnerText.Length;
-                Console.WriteLine(lengthBefore);
+                lengthBeforeY += data.InnerText.Length;
+                Console.WriteLine(lengthBeforeY);
+            }
+            if (forX == null) {
+                lengthBeforeX += data.InnerText.Length;
+                Console.WriteLine(lengthBeforeX);
             }
         }
 
@@ -96,35 +101,46 @@ using (WordprocessingDocument document =
                 comments.Save();
 
                 // add a commentRangeStart before forX
-                forX.InsertBeforeSelf(new CommentRangeStart() { Id = initialCommentId });
+                // split forX into two
+                // handle forX==forY
+                if (forX == forY)
+                {
+                    Console.WriteLine("Equal");
+                }
+                else
+                {
+                    forX.InsertBeforeSelf(new CommentRangeStart() { Id = initialCommentId });
 
-                // add a commentRangeEnd after forY
-                Console.WriteLine("forY: " + forY.InnerText);
-                // split forY into two runs
-                string text1 = forY.InnerText[..(y - lengthBefore)];
-                string text2 = forY.InnerText[(y-lengthBefore)..];
+                    // add a commentRangeEnd after forY
+                    Console.WriteLine("forY: " + forY.InnerText);
+                    // split forY into two runs
+                    string text1 = forY.InnerText[..(y - lengthBeforeY)];
+                    string text2 = forY.InnerText[(y - lengthBeforeY)..];
 
-                Console.WriteLine(text1 + " 1");
-                Console.WriteLine(text2 + " 2");
+                    Console.WriteLine(text1 + " 1");
+                    Console.WriteLine(text2 + " 2");
 
-                Text forYText = forY.GetFirstChild<Text>();
-                forYText.Text = text1;
+                    Text forYText = forY.GetFirstChild<Text>();
+                    forYText.Text = text1;
 
-                Run addedRun = (Run)forY.Clone();
-                Text addedRunText = addedRun.GetFirstChild<Text>();
-                //addedRunText.Space = SpaceProcessingModeValues.Preserve;
-                addedRunText.Text = text2;
+                    Run addedRun = (Run)forY.Clone();
+                    Text addedRunText = addedRun.GetFirstChild<Text>();
+                    //addedRunText.Space = SpaceProcessingModeValues.Preserve;
+                    addedRunText.Text = text2;
 
-                forY.InsertAfterSelf(addedRun);
-
-
-                var cmtEnd = forY.InsertAfterSelf(new CommentRangeEnd() { Id = initialCommentId });
+                    forY.InsertAfterSelf(addedRun);
 
 
-                // add a commentReference after commentRangeEnd
-                cmtEnd.InsertAfterSelf(new Run(new CommentReference() { Id = initialCommentId }));
+                    var cmtEnd = forY.InsertAfterSelf(new CommentRangeEnd() { Id = initialCommentId });
 
-                document.Save();
+
+                    // add a commentReference after commentRangeEnd
+                    cmtEnd.InsertAfterSelf(new Run(new CommentReference() { Id = initialCommentId }));
+
+                    document.Save();
+
+                    Console.WriteLine("Finished");
+                }
             }
             else
             {
