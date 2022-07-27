@@ -1,5 +1,6 @@
 ﻿using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
+using DocumentFormat.OpenXml;
 using System.Text.RegularExpressions;
 
 string baseDir = "/Users/peppercontent/Work/openxml-tool/data/";
@@ -95,10 +96,28 @@ using (WordprocessingDocument document =
                 comments.Save();
 
                 // add a commentRangeStart before forX
-                forX.InsertBeforeSelf(new CommentRangeStart(){ Id = initialCommentId });
+                forX.InsertBeforeSelf(new CommentRangeStart() { Id = initialCommentId });
 
                 // add a commentRangeEnd after forY
                 Console.WriteLine("forY: " + forY.InnerText);
+                // split forY into two runs
+                string text1 = forY.InnerText[..(y - lengthBefore)];
+                string text2 = forY.InnerText[(y-lengthBefore)..];
+
+                Console.WriteLine(text1 + " 1");
+                Console.WriteLine(text2 + " 2");
+
+                Text forYText = forY.GetFirstChild<Text>();
+                forYText.Text = text1;
+
+                Run addedRun = (Run)forY.Clone();
+                Text addedRunText = addedRun.GetFirstChild<Text>();
+                //addedRunText.Space = SpaceProcessingModeValues.Preserve;
+                addedRunText.Text = text2;
+
+                forY.InsertAfterSelf(addedRun);
+
+
                 var cmtEnd = forY.InsertAfterSelf(new CommentRangeEnd() { Id = initialCommentId });
 
 
