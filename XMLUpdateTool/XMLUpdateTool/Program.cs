@@ -7,11 +7,11 @@ string baseDir = "/Users/peppercontent/Work/openxml-tool/data/";
 
 string filepath = baseDir + "document.docx";
 
-int x = 365;
-int y = 514;
+int x = 140;
+int y = 244;
 
 
-string textToSearch = "ssentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with des";
+string textToSearch = "dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make ";
 textToSearch = Regex.Replace(textToSearch, @"\t|\n|\r", "");
 
 
@@ -35,18 +35,23 @@ using (WordprocessingDocument document =
         
         foreach(Run data in mainDocumentPart.Document.Descendants<Run>())
         {
+          
             textFromDoc += data.InnerText;
-            if (textFromDoc.Length - 1 >= x && forX==null) {
+            
+            if (textFromDoc.Length - 1 >= x && forX == null) {
                forX = data;
                 Console.WriteLine(lengthBeforeY + ", x = " + x + " " + textFromDoc[x]);
             }
-
-
 
             if (textFromDoc.Length - 1 >= y && forY == null)
             {
                 forY = data;
                 Console.WriteLine(lengthBeforeY + ", y = " + y + " " + data.InnerText[..(y-lengthBeforeY)]);
+            }
+            if (forX == null)
+            {
+                lengthBeforeX += data.InnerText.Length;
+                Console.WriteLine(lengthBeforeX);
             }
 
             if (forY==null)
@@ -54,10 +59,8 @@ using (WordprocessingDocument document =
                 lengthBeforeY += data.InnerText.Length;
                 Console.WriteLine(lengthBeforeY);
             }
-            if (forX == null) {
-                lengthBeforeX += data.InnerText.Length;
-                Console.WriteLine(lengthBeforeX);
-            }
+            
+
         }
 
         if (forX != null && forY != null)
@@ -108,7 +111,35 @@ using (WordprocessingDocument document =
                     Console.WriteLine("Equal");
                     // split forX or forY into three elements.
                     // [..lengthBeforeX], [lengthBeforeX..lengthBeforeY], [lengthBeforeY..]
-                    Console.WriteLine("Finished = Equals");
+                    string text1 = forX.InnerText[..(x - lengthBeforeX)]; // text1
+                    string text2 = textFromDoc[x..y];                     // text2
+                    string text3 = forY.InnerText[(y - lengthBeforeY)..]; // text3
+
+                    Run addedBefore = (Run)forY.Clone();
+                    Text addedRunText = addedBefore.GetFirstChild<Text>();
+                    //addedRunText.Space = SpaceProcessingModeValues.Preserve;
+                    addedRunText.Text = text1;
+
+                    Run addedAfter = (Run)forY.Clone();
+                    Text addedAfterText = addedAfter.GetFirstChild<Text>();
+                    //addedRunText.Space = SpaceProcessingModeValues.Preserve;
+                    addedAfterText.Text = text3;
+
+                    Text forYText = forY.GetFirstChild<Text>();
+                    forYText.Text = text2;
+
+                    forY.InsertBeforeSelf(addedBefore);
+                    forY.InsertAfterSelf(addedAfter);
+
+                    forY.InsertBeforeSelf(new CommentRangeStart() { Id = initialCommentId });
+                    var cmtEnd = forY.InsertAfterSelf(new CommentRangeEnd() { Id = initialCommentId });
+
+                    // add a commentReference after commentRangeEnd
+                    cmtEnd.InsertAfterSelf(new Run(new CommentReference() { Id = initialCommentId }));
+
+                    document.Save();
+
+                    Console.WriteLine("Finished, Equal");
                 }
                 else
                 {
