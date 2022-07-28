@@ -5,7 +5,14 @@ using System.Text.RegularExpressions;
 
 string baseDir = "/Users/peppercontent/Work/openxml-tool/data/";
 
-string filepath = baseDir + "document.docx";
+string filepath = baseDir + "document";
+
+long Timestamp = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
+string copiedFilePath = filepath + "_" + Timestamp + ".docx";
+
+File.Copy(filepath + ".docx", copiedFilePath);
+
+filepath = copiedFilePath;
 
 int x = 28;
 int y = 56;
