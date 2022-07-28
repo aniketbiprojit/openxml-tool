@@ -27,6 +27,8 @@ Run? forY = null;
 int lengthBeforeY = 0;
 int lengthBeforeX = 0;
 
+bool addComment = false;
+
 using (WordprocessingDocument document =
        WordprocessingDocument.Open(filepath, true))
 {
