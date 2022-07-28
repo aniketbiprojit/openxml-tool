@@ -7,11 +7,11 @@ string baseDir = "/Users/peppercontent/Work/openxml-tool/data/";
 
 string filepath = baseDir + "document.docx";
 
-int x = 140;
-int y = 244;
+int x = 28;
+int y = 56;
 
 
-string textToSearch = "dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make ";
+string textToSearch = "sum is simply dummy text of ";
 textToSearch = Regex.Replace(textToSearch, @"\t|\n|\r", "");
 
 
@@ -92,7 +92,7 @@ using (WordprocessingDocument document =
                 }
 
 
-                Paragraph p = new Paragraph(new Run(new Text("Added Comment 1")));
+                Paragraph p = new Paragraph(new Run(new Text("Added Comment 2")));
                 Comment cmt =
                     new Comment()
                     {
@@ -146,6 +146,17 @@ using (WordprocessingDocument document =
                 else
                 {
                     // split forX into before([0..lengthBeforeX], [lengthBeforeX..X]) and forX
+                    string textBeforeX = forX.InnerText[..(x - lengthBeforeX)]; // text1
+                    string textForX = forX.InnerText[(x - lengthBeforeX)..];
+
+                    Run addedBeforeX = (Run)forX.Clone();
+                    Text addedBeforeXText = addedBeforeX.GetFirstChild<Text>();
+                    addedBeforeXText.Text = textBeforeX;
+
+                    Text forXText = forX.GetFirstChild<Text>();
+                    forXText.Text = textForX;
+                    forX.InsertBeforeSelf(addedBeforeX);
+
                     forX.InsertBeforeSelf(new CommentRangeStart() { Id = initialCommentId });
 
                     // add a commentRangeEnd after forY
